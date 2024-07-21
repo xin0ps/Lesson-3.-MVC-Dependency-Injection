@@ -1,0 +1,33 @@
+4
+Controller  controller gelen requestleri gore frontende qaytarilacaq view və görüləcək actionu təyin edir
+View   vieü sadəcə burda html faylımız olur  controllerde hansisa action ise duzende fronta viev otuürülür ki bu da parametr olaraq viev adı verilir verilməyəndə actionun adına görə vəya controlleriun adına görə vievs folderində viev axtarır
+Razor   razor page cs kodu ile html kodunun birlikde işlemesini temin edir
+IActionResult  action result controllerda patha görə hansı action işləyəcəyi və hansı viev-in return olacağını yazmaq olar
+-----------------
+5
+TagHelper biz burda backenddə hərhansı bir özümüzdən bir html tagi yaradib onun içərisində görünəcək datanı vəya strukturu backenddə qurub 
+onu razor page-də istifadə edə bilərik
+  public class TimeTagHelper : TagHelper
+    {
+        public override void Process(TagHelperContext context, TagHelperOutput output)
+        {
+            
+            output.TagName = "span";
+            output.Content.SetContent(DateTime.Now.ToString("HH:mm:ss"));
+        }
+    }
+
+Model Binding  http requestdən gələn data  birbaşa modelə (obyektə) çevirmək üçün istifadə olunur 
+Layout - biz bunu _layout.cshtml  içində yazdığımız strukturu istədiyimiz başqa bir .cshtml səhifəsində istifadə edə bilirik @{
+    ViewData["Title"] = "Home";
+    Layout = "_Layout";
+}
+
+ViewStart bu isə appin başlanğıc page-ini və layoutları falan düzəltmık üçün istifadə edə bilərik
+
+ViewImport burda razor səhifələrdə işlənən using və taghelper kodlarını yazıb bütür razor pagelərə aid edə bilərik
+@using MyApplication.Models
+@using Microsoft.AspNetCore.Mvc.Rendering
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers 
+
+
